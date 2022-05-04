@@ -4,12 +4,12 @@
     align-items: center;
     padding: 10px;
     background-position: center;
-    border-bottom: 5px double blue;
+    background-color: rgba(0, 0, 255, 0.259);
     /* #a3d1ff */
 }
 
 h1 {
-    color: blue;
+    color: white;
     position: absolute;
     top: -4px;
     left: 78px;
@@ -36,7 +36,7 @@ img {
 .nav-container li a {
     padding: 5px;
     text-decoration: none;
-    color: blue;
+    color: white;
     font-weight: 800;
     font-size: 18px;
     border-radius: 10px;

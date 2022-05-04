@@ -1,4 +1,5 @@
 import React from 'react';
+import CardWidget from './CardWidget';
 
 //import mi archivo css
 import './styles/NavBar.css';
@@ -26,6 +27,7 @@ const NaBar = () => {
           </li>
         </ul>
       </nav>
+      <CardWidget/>
     </header>
   );
 };

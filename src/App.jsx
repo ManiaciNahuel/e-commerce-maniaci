@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <NavBar />
-      <ItemListContainer greeting="Item del container"/>
+      <ItemListContainer initial={1} stock={5}/>
     </>
   );
 }

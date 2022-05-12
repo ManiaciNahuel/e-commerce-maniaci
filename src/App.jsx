@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <NavBar />
-      <ItemListContainer initial={1} stock={5}/>
+      <ItemListContainer/>
     </>
   );
 }

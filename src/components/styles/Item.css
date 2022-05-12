@@ -1,0 +1,29 @@
+.Item {
+    padding: 8px;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 2rem;
+    position: relative;
+    flex-direction: column;
+    background-color: rgba(0, 0, 255, 0.259);
+    border: 1px white solid;
+    border-radius: 15px;
+    width: 174px;
+    height: 350px;
+}
+
+.Item-img {
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+}
+
+.Item-name {
+    height: 60px;
+    text-align: center;
+    align-self: center;
+}
+
+.Item p {
+    margin: 10px 0px;
+}

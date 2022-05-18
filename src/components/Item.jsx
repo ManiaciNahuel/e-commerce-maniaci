@@ -2,12 +2,13 @@ import React from "react";
 import ItemCount from "./ItemCount";
 import Swal from 'sweetalert2'
 import './styles/Item.css'
+import { Link } from "react-router-dom";
 
-const Item = ({id, name, price, image, stock}) => {
+const Item = ({prod}) => {
     const onAdd = (select) => {
         Swal.fire({
             icon: 'success',
-            title: `Agregaste ${select} discos de ${name}`,
+            title: `Agregaste ${select} discos de ${prod.name}`,
             showConfirmButton: false,
             timer: 1200,
             position: 'top-end',
@@ -16,13 +17,24 @@ const Item = ({id, name, price, image, stock}) => {
     }
 
     return (
-        <div className="Item">
-            <img className="Item-img" src={image} alt="" />
-            <h3 className="Item-name">{name}</h3>
-            {/* <p className="Item-id">Id producto{id}</p> */}
-            <p className="Item-price">${price}</p>
-            <ItemCount stock={stock} onAdd={onAdd} initial={1}/>
-        </div>
+        <div className="Item" >
+                <div className="Item-name">
+                    {prod.name}
+                </div>
+                <div>
+                    <img className="Item-img" src={prod.image} alt='' />
+                    <br />
+                    {`$${prod.price}`}                                                            
+                </div>
+                <ItemCount stock={prod.stock} onAdd={onAdd} initial={1}/>
+                <div className="Item-footer">  
+                    <Link to={`/detalle/${prod.id}`}>
+                        <button className="btn-detalle">
+                            Detalle 
+                        </button>                
+                    </Link>  
+                </div>
+            </div> 
     )
 }
 

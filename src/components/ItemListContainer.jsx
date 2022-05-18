@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../data/data";
+import { getProduct } from "../data/data";
 import ItemList from "./ItemList";
 
 /* estilos */
@@ -10,21 +10,22 @@ const ItemListContainer = () => {
   const [productList, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const { id } = useParams() 
+  const { detalleId } = useParams() 
+  console.log(detalleId);
 
   useEffect(() => {
-      if (id) {
-          getProducts()  
-          .then(respuesta=> setProductos(respuesta.filter((prods) => prods.id === id)))
+      if (detalleId) {
+          getProduct()  
+          .then(respuesta=> setProductos(respuesta.filter((prods) => prods.id === detalleId)))
           .catch((err)=> console.log(err))
           .finally(()=>setLoading(false))                             
       } else {
-          getProducts()  
+          getProduct()  
           .then(respuesta=> setProductos(respuesta))
           .catch((err)=> console.log(err))
           .finally(()=>setLoading(false))                 
       }
-    }, [id])
+    }, [detalleId])
   
   return (
     <section className="items-list-container">

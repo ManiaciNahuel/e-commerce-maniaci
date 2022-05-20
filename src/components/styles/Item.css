@@ -9,7 +9,7 @@
     border: 1px white solid;
     border-radius: 15px;
     width: 174px;
-    height: 350px;
+    height: 200px;
 }
 
 .Item-img {
@@ -19,7 +19,6 @@
 }
 
 .Item-name {
-    height: 60px;
     text-align: center;
     align-self: center;
 }
@@ -29,5 +28,5 @@
 }
 
 .btn-detalle {
-    width: 50px;
+    width: 70px;
 }

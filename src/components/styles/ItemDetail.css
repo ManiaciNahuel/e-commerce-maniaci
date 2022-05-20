@@ -1,0 +1,24 @@
+.detail {
+    padding: 40px;
+    gap: 15px;
+    background-color: rgba(0, 0, 255, 0.259);
+    border-radius: 10px;
+    display: flex;
+    position: relative;
+    width: fit-content;
+    border: 1px white solid;
+}
+
+.img-detail {
+    width: 400px;
+    height: 400px;
+}
+
+.info-detail {
+    position: relative;
+    right: 0px;
+    color: white;
+    text-align: center;
+    align-self: center;
+    font-size: 1rem;
+}

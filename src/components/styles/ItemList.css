@@ -3,9 +3,16 @@
     flex-direction: row;
     gap: 30px;
     justify-content: center;
+    flex-wrap: wrap;
+    margin: 0px 30px;
 }
 
 .cargando {
     display: flex;
     text-align: center;
+    justify-content: center;
+    color: black;
+    font-weight: bold;
+    margin-top: 200px;
+    font-size: 1.5rem;
 }

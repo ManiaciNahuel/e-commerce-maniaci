@@ -1,30 +1,38 @@
 import React from 'react';
+import { NavLink} from 'react-router-dom';
 import CardWidget from './CardWidget';
 
 //import mi archivo css
 import './styles/NavBar.css';
 
-const NaBar = () => {
+
+const array = [
+  {idcategory: '1', name: 'vinyls', nameButton: 'Vinyls'},
+  {idcategory: '2', name: 'cds', nameButton: 'CDs'},
+]
+
+const NavBar = () => {
+  
   return (
     <header className="header">
       <div className="logo-container">
-        <img src="media/swimming_logo.png" alt="logo" />
+      <NavLink to="/" >
+          <img src="media/swimming_logo.png" alt="logo" />
+          <h1>Swimming in Circles</h1>
+      </NavLink>
       </div>
-      <h1>Swimming in Circles</h1>
       <nav>
         <ul className="nav-container">
           <li>
-            <a href="/">Inicio</a>
+            <NavLink to={`/`}>Todos</NavLink>
           </li>
-          <li>
-            <a href="/">Productos</a>
-          </li>
-          <li>
-            <a href="/">Blog</a>
-          </li>
-          <li>
-            <a href="/">Contacto</a>
-          </li>
+          {array.map(param => 
+            <li>
+              <NavLink key={param.idcategory} to={`/category/${param.idcategory}`}>
+                {param.nameButton}
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
       <CardWidget/>
@@ -32,4 +40,4 @@ const NaBar = () => {
   );
 };
 
-export default NaBar;
+export default NavBar;

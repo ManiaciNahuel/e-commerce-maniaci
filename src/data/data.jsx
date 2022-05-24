@@ -5,6 +5,7 @@ export const productList = [
   {id: '3', name: 'The Divine Feminine', price: 350, image:'https://i.postimg.cc/j2dP5SfC/The-Divine-Feminine.jpg', stock: 6, year: '2016', category: "2"}, 
   {id: '4', name: 'Swimming', price: 500, image:'https://i.postimg.cc/KjqLgh7f/Swimming.jpg', stock: 8, year: '2018', category: "2"}, 
   {id: '5', name: 'Circles', price: 400, image:'https://i.postimg.cc/9XJyky39/Circles.jpg', stock: 10, year: '2020', category: "1"}, 
+  {id: '6', name: 'GO:OD AM', price: 470, image:'https://i.postimg.cc/8cR01mK4/GO-OD-AM-by-Mac-Miller.jpg', stock: 5, year: '2015', category: "2"}, 
 ];
 
 
@@ -15,8 +16,8 @@ export const getProducts = (id) => {
     setTimeout(() => {
       const query = id ? productList.find(producto => producto.id === id) : productList
       resolve(query)
-    }, 1000)
+    }, 0)
   })
 }
 
-
+  

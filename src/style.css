@@ -10,3 +10,11 @@ body {
     height: 100vh;
     color: white;
 }
+
+button {
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px;
+    border: 0.1px solid white;
+    margin: 5px;
+}

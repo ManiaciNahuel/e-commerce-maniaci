@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import ItemCount from './ItemCount'
+import PressedButton from './PressedButton'
 
 import './styles/ItemDetail.css'
 
@@ -11,15 +12,18 @@ const ItemDetail = ({producto}) => {
   } else {
     var format = "CD"
   }
+  // Estado Count 
+  const [countButton, setCountButton] = useState(false)
   const onAdd = (select) => {
-    
     Swal.fire({
           icon: 'success',
           title: `Agregaste ${select} ${format} de ${producto.name}`,
           showConfirmButton: false,
-          timer: 1200,
+          timer: 2200,
           position: 'top-end',
       })
+    console.log("Agregaste");
+    setCountButton(true)
   } 
 
   return (
@@ -32,7 +36,12 @@ const ItemDetail = ({producto}) => {
           <h3>Released: {producto.year}</h3>
           <h4>Format: {format}</h4>
           <p>Price: ${producto.price}</p>
-          <ItemCount stock={producto.stock} onAdd={onAdd} initial={1}/>
+          {
+            !countButton ? 
+              <ItemCount stock={producto.stock} onAdd={onAdd} initial={1}/>
+            :
+              <PressedButton/>
+          }
       </div>
     </div>
   )

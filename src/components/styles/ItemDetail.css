@@ -16,6 +16,7 @@
 
 .info-detail {
     position: relative;
+    width: 250px;
     right: 0px;
     color: white;
     text-align: center;

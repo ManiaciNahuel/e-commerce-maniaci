@@ -5,12 +5,15 @@ import Cart from './components/Cart.jsx';
 import ItemDetailContainer from './components/ItemDetailContainer.jsx';
 import ItemListContainer from './components/ItemListContainer.jsx';
 import NavBar from './components/NavBar.jsx';
+import CartContextProvider from './context/cartContext.jsx';
 
 import './style.css';
 
 export default function App() {
   return (
     <BrowserRouter>
+    <CartContextProvider>
+
       <NavBar />
       <Routes>
         <Route path="/" element = { <ItemListContainer/> } />            
@@ -20,6 +23,7 @@ export default function App() {
         <Route path="/*" element = { <Navigate to='/' replace /> } /> 
 
       </Routes>
+    </CartContextProvider>
     </BrowserRouter>
   );
 }

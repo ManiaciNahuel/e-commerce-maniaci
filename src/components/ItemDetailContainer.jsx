@@ -16,7 +16,6 @@ const ItemDetailContainer = () => {
         .finally(()=>setLoading(false)) 
     }, [detalleId])
 
-    console.log(detalleId);
     return (
         <>
             {

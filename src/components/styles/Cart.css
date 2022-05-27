@@ -1,0 +1,80 @@
+.cart-tittle {
+    text-align: center;
+    color: black;
+}
+
+.cart-container {
+    margin: 2rem;
+    display: flex;
+    background-color: rgba(0, 0, 255, 0.259);
+    border: 1px white solid;
+    border-radius: 15px;
+}
+
+.cart-list {
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    text-align: start;
+    align-self: center;
+    align-content: center;
+    font-size: 1rem;
+    position: relative;
+    list-style: none;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    width: 480px;
+    margin: 8px;
+    justify-content: space-between;
+}
+
+.cart-x {
+    height: fit-content;
+    color: red;
+    align-self: center;
+}
+
+.cart-item div {
+    align-self: center;
+}
+
+.btns {
+    width: 200px;
+    padding: 5px;
+    display: flex;
+    margin-left: 2%;
+    float: left;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.btns button {
+    width: 100%;
+}
+
+.cart-resumen {
+    width: 200px;
+    padding: 5px;
+    display: flex;
+    margin-right: 3%;
+    float: right;
+    flex-direction: column;
+    justify-content: flex-end;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 255, 0.259);
+    border-radius: 5px;
+}
+
+.cart-cant-prod {
+    align-self: flex-end;
+    right: 32px;
+}
+
+.cart-precio-total {
+    align-self: flex-end;
+}

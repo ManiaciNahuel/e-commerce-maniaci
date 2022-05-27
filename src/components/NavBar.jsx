@@ -23,11 +23,11 @@ const NavBar = () => {
       </div>
       <nav>
         <ul className="nav-container">
-          <li>
+          <li key={"todos"}>
             <NavLink to={`/`}>Todos</NavLink>
           </li>
           {array.map(param => 
-            <li>
+            <li key={param.idcategory}>
               <NavLink key={param.idcategory} to={`/category/${param.idcategory}`}>
                 {param.nameButton}
               </NavLink>

@@ -1,13 +1,16 @@
 import React from "react"
-//import mi archivo css
+import { Link } from "react-router-dom";
+
 import './styles/CardWidget.css';
 
 const CardWidget = () => {
     return (
-        <div className="carrito">
-            <img src="media/shopping-cart.png" alt="" />
-            <span>0</span>  
-        </div>
+        <Link to="/cart">
+            <div className="carrito">
+                <img src="media/shopping-cart.png" alt="" />
+                <span>0</span>  
+            </div>
+        </Link>
     )
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Swal from 'sweetalert2'
 import ItemCount from './ItemCount'
 import PressedButton from './PressedButton'
+import { useCartContext } from '../context/cartContext'
 
 import './styles/ItemDetail.css'
 
@@ -12,17 +13,20 @@ const ItemDetail = ({producto}) => {
   } else {
     var format = "CD"
   }
+
+  const {addToCart, cartList} = useCartContext()
+
   // Estado Count 
   const [countButton, setCountButton] = useState(false)
   const onAdd = (select) => {
+    addToCart( { ...producto, cantidad: select } )
     Swal.fire({
           icon: 'success',
           title: `Agregaste ${select} ${format} de ${producto.name}`,
           showConfirmButton: false,
-          timer: 2200,
+          timer: 200,
           position: 'top-end',
       })
-    console.log("Agregaste");
     setCountButton(true)
   } 
 

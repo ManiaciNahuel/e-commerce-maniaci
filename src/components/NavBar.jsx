@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink} from 'react-router-dom';
+import { useCartContext } from '../context/cartContext';
 import CardWidget from './CardWidget';
 
 //import mi archivo css
@@ -12,7 +13,7 @@ const array = [
 ]
 
 const NavBar = () => {
-  
+  const {cantTotalProds} = useCartContext()
   return (
     <header className="header">
       <div className="logo-container">
@@ -35,7 +36,10 @@ const NavBar = () => {
           )}
         </ul>
       </nav>
-      <CardWidget/>
+      <div className='cart'>
+        <CardWidget/>
+        <span>{cantTotalProds() !== 0 && cantTotalProds()}</span>
+      </div>
     </header>
   );
 };

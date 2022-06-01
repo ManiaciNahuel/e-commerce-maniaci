@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getProducts } from '../data/data'
 import ItemDetail from './ItemDetail'
 import './styles/ItemDetailContainer.css'
+import { Orbit, Pulsar } from '@uiball/loaders'
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState([])
@@ -24,8 +25,12 @@ const ItemDetailContainer = () => {
                 <ItemDetail producto={producto}  />
             </div>
                 : 
-                <p className="cargando">Cargando producto...</p>
-                
+                <>
+                    <p className="cargando">Cargando producto...</p>
+                    <div className="jl">
+              <Pulsar speed={1.9} size={80} color="#0000ff90"/>
+            </div>
+                </>
             }
         </>
     )

@@ -14,10 +14,11 @@ const ItemDetail = ({producto}) => {
     var format = "CD"
   }
 
-  const {addToCart, cartList} = useCartContext()
+  const {addToCart} = useCartContext()
 
   // Estado Count 
   const [countButton, setCountButton] = useState(false)
+  
   const onAdd = (select) => {
     addToCart( { ...producto, cantidad: select } )
     Swal.fire({
@@ -28,6 +29,7 @@ const ItemDetail = ({producto}) => {
           position: 'top-end',
       })
     setCountButton(true)
+    
   } 
 
   return (

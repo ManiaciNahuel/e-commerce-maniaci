@@ -3,10 +3,18 @@
     color: black;
 }
 
+.carrito-vacio {
+    margin-top: 200px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .cart-container {
     margin: 2rem;
     display: flex;
-    background-color: rgba(0, 0, 255, 0.259);
+    background-color: #0000ff42;
     border: 1px white solid;
     border-radius: 15px;
 }

@@ -3,15 +3,6 @@
     padding: 7px;
 }
 
-.carrito:hover {
-    background-color: blue;
-    cursor: pointer;
-}
-
-.carrito span {
-    color: white;
-}
-
 .carrito img {
     height: 25px;
     width: 25px;

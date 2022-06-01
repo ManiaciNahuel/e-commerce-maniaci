@@ -1,3 +1,4 @@
+import { ChaoticOrbit, DotPulse, DotSpinner, Jelly, Metronome, NewtonsCradle, Orbit, Pulsar } from "@uiball/loaders";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProducts } from "../data/data";
@@ -54,7 +55,13 @@ const ItemListContainer = () => {
               <ItemList productos={productList} />
             </div>
           : 
-            <p className="cargando">Cargando productos...</p>
+          <>
+            {/* <p className="cargando">Cargando productos...</p> */}
+            <div className="jl">
+              <Pulsar speed={1.9} size={80} color="#0000ff90"/>
+            </div>
+            
+ </>
             
         }
       </section>

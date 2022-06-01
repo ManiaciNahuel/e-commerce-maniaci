@@ -46,3 +46,14 @@ img {
     color: white;
     background-color: blue;
 }
+
+.cart {
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.cart:hover {
+    background-color: blue;
+    cursor: pointer;
+}

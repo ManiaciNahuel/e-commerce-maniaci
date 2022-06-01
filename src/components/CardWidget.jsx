@@ -8,7 +8,6 @@ const CardWidget = () => {
         <Link to="/cart">
             <div className="carrito">
                 <img src="media/shopping-cart.png" alt="" />
-                <span>0</span>  
             </div>
         </Link>
     )

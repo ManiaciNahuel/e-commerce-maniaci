@@ -16,7 +16,7 @@ export const getProducts = (id) => {
     setTimeout(() => {
       const query = id ? productList.find(producto => producto.id === id) : productList
       resolve(query)
-    },0)
+    }, 1000)
   })
 }
 

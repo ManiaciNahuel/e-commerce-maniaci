@@ -1,5 +1,6 @@
-import React from 'react';
-import { NavLink} from 'react-router-dom';
+import {getFirestore, collection, getDocs, query, where} from 'firebase/firestore'
+import React, { useEffect, useState } from 'react';
+import { NavLink, useParams} from 'react-router-dom';
 import { useCartContext } from '../context/cartContext';
 import CardWidget from './CardWidget';
 
@@ -7,13 +8,22 @@ import CardWidget from './CardWidget';
 import './styles/NavBar.css';
 
 
-const array = [
-  {idcategory: '1', name: 'vinyls', nameButton: 'Vinyls'},
-  {idcategory: '2', name: 'cds', nameButton: 'CDs'},
-]
-
 const NavBar = () => {
-  const {cantTotalProds} = useCartContext()
+  const [loading, setLoading] = useState(true)
+  const [categories, setCategories] = useState([])
+  const { id } = useParams()
+
+  useEffect(()=>{
+    const db = getFirestore()
+    const queryCollection = collection(db, 'categories')
+    getDocs(queryCollection)
+      .then(resp => setCategories(resp.docs.map(item =>({id: item.id, ...item.data() }) ) ) )
+      .catch((err)=> console.log(err))
+      .finally(()=>setLoading(false))  
+  },[id])
+  console.log(categories);
+
+  const {cantTotalProds} = useCartContext() 
   return (
     <header className="header">
       <div className="logo-container">
@@ -27,9 +37,9 @@ const NavBar = () => {
           <li key={"todos"}>
             <NavLink to={`/`}>Todos</NavLink>
           </li>
-          {array.map(param => 
-            <li key={param.idcategory}>
-              <NavLink key={param.idcategory} to={`/category/${param.idcategory}`}>
+          {categories.map(param => 
+            <li key={param.name}>
+              <NavLink key={param.name} to={`/category/${param.name}`}>
                 {param.nameButton}
               </NavLink>
             </li>

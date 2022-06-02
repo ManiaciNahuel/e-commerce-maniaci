@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 const Item = ({prod}) => {
     
     return (
-        <div className="Item" >
+        <Link className="item-link" to={`/detalle/${prod.id}`}>
+            <div className="Item" >
                 <div className="Item-name">
                     {prod.name}
                 </div>
@@ -16,13 +17,12 @@ const Item = ({prod}) => {
                     {`$${prod.price}`}                                                            
                 </div>
                 <div className="Item-footer">  
-                    <Link to={`/detalle/${prod.id}`}>
                         <button className="btn-detalle">
                             Comprar 
                         </button>                
-                    </Link>  
                 </div>
             </div> 
+        </Link>  
     )
 }
 

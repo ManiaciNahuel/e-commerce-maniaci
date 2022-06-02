@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getProducts } from '../data/data'
 import ItemDetail from './ItemDetail'
 import './styles/ItemDetailContainer.css'
 import { Orbit, Pulsar } from '@uiball/loaders'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
     const [producto, setProducto] = useState([])
     const [loading, setLoading] = useState(true);
     const { detalleId } = useParams()
-
+    
     useEffect(() => {
-        getProducts(detalleId)  
-        .then(respuesta=> setProducto(respuesta))
-        .catch((err)=> console.log(err))
+        const database = getFirestore() 
+        const databaseQuery = doc(database, "items", detalleId)
+        getDoc(databaseQuery)
+        .then(resp => setProducto({id: resp.id, ...resp.data()}))
         .finally(()=>setLoading(false)) 
-    }, [detalleId])
+      }, [])
 
     return (
         <>

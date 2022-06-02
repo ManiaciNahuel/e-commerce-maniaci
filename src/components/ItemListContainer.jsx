@@ -1,70 +1,47 @@
-import { ChaoticOrbit, DotPulse, DotSpinner, Jelly, Metronome, NewtonsCradle, Orbit, Pulsar } from "@uiball/loaders";
+import { Pulsar } from "@uiball/loaders";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../data/data";
 import ItemList from "./ItemList";
-//import {getFirestore, doc, getDoc, collection, getDocs, query, where} from 'firebase/firestore'
+import {getFirestore, collection, getDocs, query, where} from 'firebase/firestore'
 /* estilos */
 import './styles/ItemListContainer.css'
 
 const ItemListContainer = () => {
-  /* const [productList, setProductos] = useState([]) */
   const [loading, setLoading] = useState(true)
-  const [productList, setProducts] = useState([])
-
+  const [productsList, setProducts] = useState([])
   const { id } = useParams()
-  /* useEffect(() => {
-    const db = getFirestore() 
-    const dbQuery = doc(db, "items", "4ar1In9oDJo131Xhoq8c")
-    getDoc(dbQuery)
-    .then(resp => setProducts({id: resp.id, ...resp.data()}))
-  }, [])
-  useEffect(() => {
-    const db = getFirestore() 
-    const queryCollection = collection(db, "items")
-    const queryCollectionFilter = query(queryCollection, where("category", "==", "1"))
-
-    getDocs(queryCollectionFilter)
-        .then(resp => setProducts(resp.docs.map(
-            item =>({id: item.id, ...item.data() }) ) ) )
-        .catch((err)=> console.log(err))
-        .finally(()=>setLoading(false)) 
-  } , [])
-  console.log(productList)
-   */
-  useEffect(() => {
+  useEffect(()=>{
+    const db = getFirestore()
+    const queryCollection = collection(db, 'items')
     if (id) {
-        getProducts()  // fetch llamada a una api  
-        .then(respuesta=> setProducts(respuesta.filter((prods) => prods.category === id)))
-        .catch((err)=> console.log(err))
-        .finally(()=>setLoading(false))                             
+      const queryCollectionFilter = query(queryCollection, where('category', '==', id))
+      getDocs(queryCollectionFilter)
+      .then(resp => setProducts( resp.docs.map(item => ( { id: item.id, ...item.data() } ) ) ) )
+      .catch((err)=> console.log(err))
+      .finally(()=>setLoading(false))  
     } else {
-        getProducts()  // fetch llamada a una api  
-        .then(respuesta=> setProducts(respuesta))
-        .catch((err)=> console.log(err))
-        .finally(()=>setLoading(false))                 
+      getDocs(queryCollection)
+      .then(resp => setProducts(resp.docs.map(item =>({id: item.id, ...item.data() }) ) ) )
+      .catch((err)=> console.log(err))
+      .finally(()=>setLoading(false)) 
     }
-  }, [id])
-
+  },[id])
   return (
-    <section className="items-list-container">
-        <h2 className="item-list-container-title">Productos destacados</h2>
-        {
-          !loading?
-            <div className="productos-container">
-              <ItemList productos={productList} />
-            </div>
-          : 
-          <>
-            {/* <p className="cargando">Cargando productos...</p> */}
-            <div className="jl">
-              <Pulsar speed={1.9} size={80} color="#0000ff90"/>
-            </div>
-            
- </>
-            
-        }
+    <>
+      <section className="items-list-container">
+          <h2 className="item-list-container-title">Productos destacados</h2>
+          {
+            !loading?
+              <div className="productos-container">
+                <ItemList productos={productsList} />
+              </div>
+            : 
+              <div className="jl">
+                <Pulsar speed={1.9} size={80} color="#0000ff90"/>
+              </div>
+          }
       </section>
+    </>
     );
   };
 

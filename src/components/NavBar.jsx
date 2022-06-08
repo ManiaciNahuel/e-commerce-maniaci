@@ -21,7 +21,6 @@ const NavBar = () => {
       .catch((err)=> console.log(err))
       .finally(()=>setLoading(false))  
   },[id])
-  console.log(categories);
 
   const {cantTotalProds} = useCartContext() 
   return (
@@ -48,7 +47,7 @@ const NavBar = () => {
       </nav>
       <div className='cart'>
         <CardWidget/>
-        <span>{cantTotalProds() !== 0 && cantTotalProds()}</span>
+        {cantTotalProds() !== 0 && cantTotalProds()}
       </div>
     </header>
   );

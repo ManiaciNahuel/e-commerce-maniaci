@@ -25,7 +25,8 @@ const ItemDetail = ({producto}) => {
           icon: 'success',
           title: `Agregaste ${select} ${format} de ${producto.name}`,
           showConfirmButton: false,
-          timer: 200,
+          timer: 1200,
+          className:"fire",
           position: 'top-end',
       })
     setCountButton(true)

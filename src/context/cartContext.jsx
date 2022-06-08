@@ -17,7 +17,7 @@ const CartContextProvider = ({children}) =>{
             let i = cartList.findIndex(el => el.id === producto.id);
             const newCartList = cartList;
             newCartList[i].cantidad += item.cantidad;
-            setCartList(newCartList);
+            setCartList([...newCartList]);
         } else {
             setCartList( [
                 ...cartList,

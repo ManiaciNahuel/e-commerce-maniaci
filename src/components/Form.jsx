@@ -32,7 +32,7 @@ const Form = ({orden}) => {
           <form action="post">
             <input 
               type="text" 
-              name="nombre" 
+              name="name" 
               value={clientData.name} 
               onChange={(e) => changeHandler(e)}
               required

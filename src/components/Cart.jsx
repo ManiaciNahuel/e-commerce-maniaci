@@ -11,19 +11,18 @@ const Cart = () => {
     let orden = {}   
     orden.buyer = { name: '', email: '', phone: '' }
     orden.total = cantTotalPrice()
-
+    Form({orden})
     orden.items = cartList.map(cartItem => {
       const id = cartItem.id
       const name = cartItem.name
       const price = cartItem.price * cartItem.cantidad
       const amount = cartItem.cantidad
       
-      Form({orden})
       return {id, name, price, amount}
     })   
     
     
-    if (orden.buyer.name!= " ") {
+    if (orden.buyer.name!== " ") {
       
       const db = getFirestore()
       const queryCollection = collection(db, 'orders')

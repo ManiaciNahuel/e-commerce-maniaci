@@ -1,58 +1,50 @@
-import { useState } from "react";
 
-const Form = ({orden}) => {
+import "./styles/Form.css"
 
-    const [clientData, setClientData] = useState({name:"", phone:"", email:""})
-    function changeHandler(e) {
-      setClientData({
-        ...clientData,[e.target.name]: e.target.value
-      })
-    }
 
-    async function enviarDatos () {
-      console.log(clientData);
-      orden.buyer = { name: ' ', email: ' ', phone: ' ' }
-      orden.buyer = clientData.map(clientData => {
-        const name = clientData.name
-        const phone = clientData.phone
-        const email = clientData.email
-
-        return {name, phone, email}
-      })
-      console.log(orden.buyer);
-    }
+const Form = ({changeHandler, clientData, generarOrden, btnDisable}) => {
 
     return (
       <>
 
-      <div>
-          <p>FORMULARIO</p>
+      <div className="form">
+          <h2>FORMULARIO</h2>
           <h3>Complete sus datos para finalizar la compra</h3>
           
-          <form action="post">
+          <form action="">
+            <label htmlFor="name">Nombre y Apellido</label>
             <input 
               type="text" 
               name="name" 
               value={clientData.name} 
               onChange={(e) => changeHandler(e)}
+              placeholder="Juan Perez"
               required
             /> 
+            
+            <label htmlFor="email">Correo Electrónico</label>
             <input 
               type="text" 
               name="email" 
               value={clientData.email} 
               onChange={(e) => changeHandler(e)} 
+              placeholder="juanperez@gmail.com"
               required
+
             /> 
+            
+            <label htmlFor="phone">Número de télefono</label>
             <input 
               type="text" 
               name="phone" 
               value={clientData.phone} 
               onChange={(e) => changeHandler(e)} 
+              placeholder="351123456"
               required
             /> 
-          <button type="submit" onClick={enviarDatos}>Enviar pedido</button>
+            
           </form>
+          <button onClick={generarOrden} disabled={btnDisable?true:false}>Enviar pedido</button>
       </div>
       </>
     

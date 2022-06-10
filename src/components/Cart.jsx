@@ -3,15 +3,24 @@ import { useCartContext } from "../context/cartContext"
 import "./styles/Cart.css"
 import {getFirestore, collection, addDoc} from 'firebase/firestore'
 import Form from "./Form"
+import { useState } from "react"
+import Swal from "sweetalert2"
 
 const Cart = () => {
   const { cartList, vaciarCarrito, deleteItem, cantTotalPrice, cantTotalProds} = useCartContext()  
-  
-  async function generarOrden() {
+  const [checkout, setCheckout] = useState(false)
+  const [btnDisable, setBtnDisable] = useState(false)
+  const [clientData, setClientData] = useState({name:"", phone:"", email:""})
+    function changeHandler(e) {
+      setClientData({
+        ...clientData,[e.target.name]: e.target.value
+      })
+    }
+  async function generarOrden(e) {
+    e.preventDefault()
     let orden = {}   
-    orden.buyer = { name: '', email: '', phone: '' }
+    orden.buyer = clientData
     orden.total = cantTotalPrice()
-    Form({orden})
     orden.items = cartList.map(cartItem => {
       const id = cartItem.id
       const name = cartItem.name
@@ -22,20 +31,48 @@ const Cart = () => {
     })   
     
     
-    if (orden.buyer.name!== " ") {
+    if ( orden.buyer.name!== "" && orden.buyer.phone!== "" && orden.buyer.email!== "") {
       
+      setBtnDisable(true)
       const db = getFirestore()
       const queryCollection = collection(db, 'orders')
       addDoc(queryCollection, orden)
-      .then(resp => console.log(resp))
-      .catch(err => console.log(err))
-      .finally(()=> vaciarCarrito())
+        .then(resp => {console.log(resp.id) ; 
+          Swal.fire({
+            icon: 'success',
+            title: `Gracias por tu compra `,
+            text: `Tu número de pedido es: ${resp.id}`,
+            showConfirmButton: false,
+            timer: 3200,
+            position: 'top-end' 
+          })}
+        )
+        .catch(err => console.log(err))
+        .finally(()=> {
+          vaciarCarrito() ; 
+          setBtnDisable(false) ; 
+          setTimeout(() => {
+            window.location.href = 'http://localhost:3000/';
+          }, 3200)
+        })
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: `Complete todos los campos para finalizar su compra`,
+        showConfirmButton: true,
+        position: 'top-end' })
     }
 }   
+
+
   
   return (
+    
     <>
-      {cantTotalProds()!== 0 ? 
+
+      {!checkout ? 
+       cantTotalProds()!== 0 ? 
+
       <>
         <h2 className="cart-tittle">Carrito</h2>
         <div className="cart-container">
@@ -67,11 +104,14 @@ const Cart = () => {
           <span className="cart-cant-prod">Cantidad de productos: {cantTotalProds()}</span>
           <br />
           <span className="cart-precio-total">Total: ${cantTotalPrice()}</span>
-          <Link to="/form">
-            <button onClick={generarOrden} className='btn btn-outline-danger'>Realizar compra</button>
-          </Link> 
+         
+            <button onClick={() => {
+              setCheckout(true)
+            }} className='btn btn-outline-danger'>Realizar compra</button>
+          
         </div>
       </>
+
       : 
           <div className="carrito-vacio">
           <h2>TU CARRITO ESTA VACIO</h2>
@@ -79,7 +119,11 @@ const Cart = () => {
           <button className="btn-seguir-compr">Volver al inicio</button>
           </Link>
           </div>
-      }
+    :
+    
+    <Form changeHandler={changeHandler} clientData={clientData} generarOrden={generarOrden} btnDisable={btnDisable}/>
+    }
+
     </>
     
       

@@ -22,6 +22,7 @@ const Cart = () => {
     let order = {}   
     order.buyer = clientData
     order.total = totalPrice()
+    order.date = new Date().toLocaleDateString()
     order.items = cartList.map(cartItem => {
       const id = cartItem.id
       const name = cartItem.name

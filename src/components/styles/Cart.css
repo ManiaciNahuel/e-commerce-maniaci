@@ -3,7 +3,7 @@
     color: black;
 }
 
-.carrito-vacio {
+.empty-cart {
     margin-top: 200px;
     color: black;
     display: flex;
@@ -46,8 +46,6 @@
     height: fit-content;
     color: red;
     align-self: center;
-    /* 
-    background-color: rgba(161, 161, 161, 0.519); */
     border: 2px solid rgba(161, 161, 161, 0.519);
     padding: 10px;
 }
@@ -71,7 +69,7 @@
     background-color: rgba(255, 255, 255, 0.519);
 }
 
-.cart-resumen {
+.cart-resume {
     color: black;
     width: 200px;
     padding: 5px;
@@ -85,11 +83,11 @@
     border-radius: 5px;
 }
 
-.cart-cant-prod {
+.cart-total-prod {
     align-self: flex-end;
     right: 32px;
 }
 
-.cart-precio-total {
+.cart-total-price {
     align-self: flex-end;
 }

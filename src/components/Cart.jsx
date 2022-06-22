@@ -1,134 +1,95 @@
+/* Importations */
 import { Link } from "react-router-dom"
 import { useCartContext } from "../context/cartContext"
 import "./styles/Cart.css"
 import {getFirestore, collection, addDoc} from 'firebase/firestore'
 import Form from "./Form"
 import { useState } from "react"
-import Swal from "sweetalert2"
+import swalFire from "./SwalFire"
+import EmptyCart from "./EmptyCart"
 
 const Cart = () => {
-  const { cartList, vaciarCarrito, deleteItem, cantTotalPrice, cantTotalProds} = useCartContext()  
+  const { cartList, emptyCart, deleteItem, totalPrice, totalProducts} = useCartContext()  
   const [checkout, setCheckout] = useState(false)
   const [btnDisable, setBtnDisable] = useState(false)
-  const [clientData, setClientData] = useState({name:"", phone:"", email:""})
-    function changeHandler(e) {
-      setClientData({
-        ...clientData,[e.target.name]: e.target.value
-      })
-    }
-  async function generarOrden(e) {
+  const [clientData, setClientData] = useState({name:"", phone:"", email:"", email_2: ""})
+    
+  function changeHandler(e) {
+    setClientData({...clientData,[e.target.name]: e.target.value})
+  }
+  async function generateOrder(e) {
     e.preventDefault()
-    let orden = {}   
-    orden.buyer = clientData
-    orden.total = cantTotalPrice()
-    orden.items = cartList.map(cartItem => {
+    let order = {}   
+    order.buyer = clientData
+    order.total = totalPrice()
+    order.items = cartList.map(cartItem => {
       const id = cartItem.id
       const name = cartItem.name
-      const price = cartItem.price * cartItem.cantidad
-      const amount = cartItem.cantidad
-      
+      const price = cartItem.price * cartItem.amount
+      const amount = cartItem.amount
       return {id, name, price, amount}
     })   
     
-    
-    if ( orden.buyer.name!== "" && orden.buyer.phone!== "" && orden.buyer.email!== "") {
-      
-      setBtnDisable(true)
-      const db = getFirestore()
-      const queryCollection = collection(db, 'orders')
-      addDoc(queryCollection, orden)
-        .then(resp => {console.log(resp.id) ; 
-          Swal.fire({
-            icon: 'success',
-            title: `Gracias por tu compra `,
-            text: `Tu número de pedido es: ${resp.id}`,
-            showConfirmButton: false,
-            timer: 3200,
-            position: 'top-end' 
-          })}
-        )
-        .catch(err => console.log(err))
-        .finally(()=> {
-          vaciarCarrito() ; 
-          setBtnDisable(false) ; 
-          setTimeout(() => {
-            window.location.href = 'http://localhost:3000/';
-          }, 3200)
-        })
+    if ( order.buyer.name!== "" && order.buyer.phone!== "" && order.buyer.email!== "" && order.buyer.email_2!== "") {
+      if (order.buyer.email === order.buyer.email_2) {
+        setBtnDisable(true)
+        const db = getFirestore()
+        const queryCollection = collection(db, 'orders')
+        addDoc(queryCollection, order)
+          .then(resp => {
+            swalFire('success', `Thanks for your purchase`,  `Your track number is: ${resp.id}`, 3200)
+          })
+          .catch(err => console.log(err))
+          .finally(()=> {
+            emptyCart() ; 
+            setBtnDisable(false) ; 
+            setTimeout(() => {window.location.href = 'http://localhost:3000/';}, 3200)
+          })
+      } else {
+        swalFire('warning', `The emails do NOT match`, "", 2000)
+      }
     } else {
-      Swal.fire({
-        icon: 'warning',
-        title: `Complete todos los campos para finalizar su compra`,
-        showConfirmButton: true,
-        position: 'top-end' })
+      swalFire( 'warning',  `Complete all the fields to continue`, "", 2000)
     }
 }   
-
-
-  
   return (
-    
     <>
-
       {!checkout ? 
-       cantTotalProds()!== 0 ? 
-
-      <>
-        <h2 className="cart-tittle">Carrito</h2>
-        <div className="cart-container">
-          <ul className="cart-list">
-            {cartList.map(product => 
-              <li key={product.id} className="cart-item">
-                <img src= {product.image} alt="" />
-                <div>
-                    {product.name}
-                </div>
-                <div>
-                  Precio: ${product.price}
-                </div>
-                <div>
-                  Cantidad: {product.cantidad}
-                </div>   
-                <button className="cart-x" onClick={()=>deleteItem(product.id)}>X</button>
-              </li>
-            )}
-          </ul>
-        </div>
-        <div className="btns">
-          <Link to="/">
-                  <button className="btn-seguir-compr">Seguir comprando</button>
-          </Link>
-          <button onClick={vaciarCarrito}>Vaciar carrito</button>
-        </div>
-        <div className="cart-resumen">
-          <span className="cart-cant-prod">Cantidad de productos: {cantTotalProds()}</span>
-          <br />
-          <span className="cart-precio-total">Total: ${cantTotalPrice()}</span>
-         
-            <button onClick={() => {
-              setCheckout(true)
-            }} className='btn btn-outline-danger'>Realizar compra</button>
-          
-        </div>
-      </>
-
-      : 
-          <div className="carrito-vacio">
-          <h2>TU CARRITO ESTA VACIO</h2>
-          <Link to="/">
-          <button className="btn-seguir-compr">Volver al inicio</button>
-          </Link>
+       totalProducts()!== 0 ? 
+        <>
+          <h2 className="cart-tittle">Cart</h2>
+          <div className="cart-container">
+            <ul className="cart-list">
+              {cartList.map(product => 
+                <li key={product.id} className="cart-item">
+                  <img src= {product.image} alt="album" />
+                  <div> {product.name} </div>
+                  <div> Price: ${product.price} </div>
+                  <div> Amount: {product.amount} </div>   
+                  <button className="cart-x" onClick={()=>deleteItem(product.id)}>X</button>
+                </li>
+              )}
+            </ul>
           </div>
-    :
-    
-    <Form changeHandler={changeHandler} clientData={clientData} generarOrden={generarOrden} btnDisable={btnDisable}/>
-    }
-
+          <div className="btns">
+            <Link to="/">
+              <button className="btn-keep-shop">Continue shopping</button>
+            </Link>
+            <button onClick={emptyCart}>Empty cart</button>
+          </div>
+          <div className="cart-resume">
+            <span className="cart-total-prod">Number of products: {totalProducts()}</span>
+            <br />
+            <span className="cart-total-price">Total: ${totalPrice()}</span>
+            <button onClick={() => {setCheckout(true)}} className='btn btn-outline-danger'>Go to checkout</button>
+          </div>
+        </>
+       :
+        <EmptyCart/>
+      :
+        <Form changeHandler={changeHandler} clientData={clientData} generateOrder={generateOrder} btnDisable={btnDisable}/>
+      }
     </>
-    
-      
-    
   )
 }
-
-  export default Cart
+export default Cart

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const PressedButton = () => {
@@ -6,10 +6,10 @@ const PressedButton = () => {
     return (
         <div>
             <Link to="/">
-                <button className="btn-after-pressed">Seguir comprando</button>
+                <button>Continue shopping</button>
             </Link> 
             <Link to="/cart">
-                <button className="btn-after-pressed">Ir al carrito</button>
+                <button>Go to cart</button>
             </Link> 
         </div>
     );

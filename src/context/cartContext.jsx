@@ -6,17 +6,16 @@ export const useCartContext = () => useContext(CartContext)
 
 
 const CartContextProvider = ({children}) =>{
-    // Estados y funciones globales
     const [cartList, setCartList] = useState([])
 
     
     function addToCart(item) {
-        const producto = cartList.find(producto => producto.id === item.id)
+        const product = cartList.find(product => product.id === item.id)
 
-        if (producto) {
-            let i = cartList.findIndex(el => el.id === producto.id);
+        if (product) {
+            let i = cartList.findIndex(el => el.id === product.id);
             const newCartList = cartList;
-            newCartList[i].cantidad += item.cantidad;
+            newCartList[i].amount += item.amount;
             setCartList([...newCartList]);
         } else {
             setCartList( [
@@ -24,14 +23,14 @@ const CartContextProvider = ({children}) =>{
                 item
             ])
         }
-        cantTotalProds()
+        totalProducts()
     }
 
     function deleteItem(id) {
         const newCart = [...cartList];
         let index = newCart.findIndex((product) => product.id === id);
-        if (cartList[index].cantidad > 1) {
-            cartList[index].cantidad = (cartList[index].cantidad)-1
+        if (cartList[index].amount > 1) {
+            cartList[index].amount = (cartList[index].amount)-1
         }else {
             newCart.splice(index,1);
         }
@@ -39,15 +38,15 @@ const CartContextProvider = ({children}) =>{
         setCartList([...newCart])
     }
 
-    function vaciarCarrito() {
+    function emptyCart() {
         setCartList([])
     }
 
-    function cantTotalProds() {
-        return cartList.reduce((acumulador, product)=> acumulador + product.cantidad, 0)
+    function totalProducts() {
+        return cartList.reduce((accumulator, product)=> accumulator + product.amount, 0)
     } 
-    const cantTotalPrice = () => {
-        return cartList.reduce((acumulador, product)=> acumulador + (product.price*product.cantidad), 0)
+    const totalPrice = () => {
+        return cartList.reduce((accumulator, product)=> accumulator + (product.price*product.amount), 0)
     } 
 
 
@@ -55,10 +54,10 @@ const CartContextProvider = ({children}) =>{
         <CartContext.Provider value={ {
             cartList,
             addToCart,
-            vaciarCarrito, 
+            emptyCart, 
             deleteItem, 
-            cantTotalPrice, 
-            cantTotalProds
+            totalPrice, 
+            totalProducts
         } } >
             {children}
         </CartContext.Provider>

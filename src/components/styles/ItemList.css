@@ -1,4 +1,4 @@
-.productos-container {
+.products-container {
     display: flex;
     flex-direction: row;
     gap: 30px;
@@ -7,7 +7,7 @@
     margin: 0px 30px;
 }
 
-.cargando {
+.loading {
     display: flex;
     text-align: center;
     justify-content: center;

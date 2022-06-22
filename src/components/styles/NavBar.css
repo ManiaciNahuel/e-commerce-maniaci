@@ -54,8 +54,3 @@ img {
     padding: 5px;
     border-radius: 10px;
 }
-
-.cart:hover {
-    background-color: rgba(0, 0, 255, 0.259);
-    cursor: pointer;
-}

@@ -6,7 +6,7 @@ import './styles/CardWidget.css';
 const CardWidget = () => {
     return (
         <Link to="/cart">
-            <div className="carrito">
+            <div className="cart">
                 <img src="media/shopping-cart.png" alt="" />
             </div>
         </Link>

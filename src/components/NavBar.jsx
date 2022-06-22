@@ -1,4 +1,4 @@
-import {getFirestore, collection, getDocs, query, where} from 'firebase/firestore'
+import {getFirestore, collection, getDocs} from 'firebase/firestore'
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams} from 'react-router-dom';
 import { useCartContext } from '../context/cartContext';
@@ -9,20 +9,23 @@ import './styles/NavBar.css';
 
 
 const NavBar = () => {
-  const [loading, setLoading] = useState(true)
   const [categories, setCategories] = useState([])
   const { id } = useParams()
 
-  useEffect(()=>{
+  function getFs(category) {
     const db = getFirestore()
-    const queryCollection = collection(db, 'categories')
+    const queryCollection = collection(db, category)
+    
     getDocs(queryCollection)
       .then(resp => setCategories(resp.docs.map(item =>({id: item.id, ...item.data() }) ) ) )
       .catch((err)=> console.log(err))
-      .finally(()=>setLoading(false))  
+  }
+
+  useEffect(()=>{
+    getFs("categories")
   },[id])
 
-  const {cantTotalProds} = useCartContext() 
+  const {totalProducts} = useCartContext() 
   return (
     <header className="header">
       <div className="logo-container">
@@ -33,8 +36,8 @@ const NavBar = () => {
       </div>
       <nav>
         <ul className="nav-container">
-          <li key={"todos"}>
-            <NavLink to={`/`}>Todos</NavLink>
+          <li key={"all"}>
+            <NavLink to={`/`}>All</NavLink>
           </li>
           {categories.map(param => 
             <li key={param.name}>
@@ -45,9 +48,9 @@ const NavBar = () => {
           )}
         </ul>
       </nav>
-      <div className='cart'>
+      <div>
         <CardWidget/>
-        {cantTotalProds() !== 0 && cantTotalProds()}
+        {totalProducts() !== 0 && totalProducts()}
       </div>
     </header>
   );

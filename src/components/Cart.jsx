@@ -9,15 +9,16 @@ import swalFire from "./SwalFire"
 import EmptyCart from "./EmptyCart"
 
 const Cart = () => {
+  //Const declarations
   const { cartList, emptyCart, deleteItem, totalPrice, totalProducts} = useCartContext()  
   const [checkout, setCheckout] = useState(false)
   const [btnDisable, setBtnDisable] = useState(false)
   const [clientData, setClientData] = useState({name:"", phone:"", email:"", email_2: ""})
     
-  function changeHandler(e) {
+  function changeHandler(e) { //Save the form (client) info 
     setClientData({...clientData,[e.target.name]: e.target.value})
   }
-  async function generateOrder(e) {
+  async function generateOrder(e) { //Save all the order information
     e.preventDefault()
     let order = {}   
     order.buyer = clientData
@@ -30,7 +31,7 @@ const Cart = () => {
       const amount = cartItem.amount
       return {id, name, price, amount}
     })   
-    
+    //Check if all the info is completed and the emails are the same, if not the alerts will pop up. After the purchase is complete it will redirect you to the main page
     if ( order.buyer.name!== "" && order.buyer.phone!== "" && order.buyer.email!== "" && order.buyer.email_2!== "") {
       if (order.buyer.email === order.buyer.email_2) {
         setBtnDisable(true)
@@ -56,8 +57,8 @@ const Cart = () => {
   return (
     <>
       {!checkout ? 
-       totalProducts()!== 0 ? 
-        <>
+       totalProducts()!== 0 ? //Confirms that the cart is not empty and shows all the cart info
+        <> 
           <h2 className="cart-tittle">Cart</h2>
           <div className="cart-container">
             <ul className="cart-list">
@@ -85,7 +86,7 @@ const Cart = () => {
             <button onClick={() => {setCheckout(true)}} className='btn btn-outline-danger'>Go to checkout</button>
           </div>
         </>
-       :
+       : //If the cart is empty
         <EmptyCart/>
       :
         <Form changeHandler={changeHandler} clientData={clientData} generateOrder={generateOrder} btnDisable={btnDisable}/>

@@ -1,3 +1,4 @@
+/* Importations */
 import React, { useState } from 'react'
 import ItemCount from './ItemCount'
 import PressedButton from './PressedButton'
@@ -7,6 +8,7 @@ import swalFire from './SwalFire'
 
 
 const ItemDetail = ({producto}) => {
+  //The format var is used specially for the alert and the detail info, so that it's more friendly
   var format = producto.category === "1" ? format = "Vinyl" : format = "CD" 
 
   const {addToCart} = useCartContext()
@@ -16,7 +18,7 @@ const ItemDetail = ({producto}) => {
     swalFire('success', `${select} ${producto.name} ${format}'s added`, "", 1200)
     setCountButton(true)
   } 
-
+  //Display for every item detail 
   return (
     <div className='detail'>
       <div>

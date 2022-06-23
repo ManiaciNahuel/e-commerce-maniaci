@@ -1,19 +1,27 @@
+# _Swimming in Circles_
+## Introducción
 
-Introducción: El proyecto sobre la venta de discos de vinilo y cds de algunos de los álbumes del cantante Mac Miller. El enfoque es en los álbumes 
-y se desplega un estilo de e-commerce con un carrito y dos categorias: CDs y Vinilos. También esta la opcion de ver a todos los productos juntos.
-Al precionar comprar podremos ver en detalle cada álbum publicado a la venta con su respectiva descripción.  Lo único incluido aparte de lo visto en 
-clase es un Sweet Alert para que aparezca al agregar productos al carrito. La toma de decisiones fue simplemente seguir lo aprendido en clase y plasmar
-algo de todos los temas tocados.
-# Dillinger
-## _The Last Markdown Editor, Ever_
+Swimming in Circles es el nombre de la página e-commerce desarrollada para el proyecto de React JS de CoderHouse.
+La página es una Single-Page Application en la cual podemos navegar desde el inicio en donde están todos los productos, las categorias (CDs y Vinilos), el detalle de cada producto y el carrito. 
 
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
+Los recursos utilizados son:
+- HTML
+- CSS
+- React JS
+- Git
+- GitHub
+- Netlify
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+## DEMO: 
+> https://maniaci-nahuel-ecommerce.netlify.app/
 
-Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
-AngularJS-powered HTML5 Markdown editor.
+## Librerias externas utilizadas
 
-- Type some Markdown on the left
-- See HTML in the right
-- ✨Magic ✨
+
+| Libreria | Versión | Descripción |
+| ------ | ------ | ------ |
+| firebase | 9.8.1 | Para storage de base de datos |
+| react-dom | 18.1.0 | Para render específico  | 
+| react-router-dom | 6.3.0 | Para enrutado |
+| sweetalert2 | 11.4.14 | Para alerts |
+| uiball/loaders | 1.2.6 | Para animaciones de loading |

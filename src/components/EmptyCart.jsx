@@ -1,3 +1,4 @@
+/* Importations */
 import { Link } from "react-router-dom"
 
 const EmptyCart = () => {

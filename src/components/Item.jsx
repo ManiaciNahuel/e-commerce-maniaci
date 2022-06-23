@@ -1,10 +1,10 @@
+/* Importations */
 import React from "react";
-
 import './styles/Item.css'
 import { Link } from "react-router-dom";
 
+//Display for every item on sale
 const Item = ({prod}) => {
-    
     return (
         <Link className="item-link" to={`/detalle/${prod.id}`}>
             <div className="Item" >

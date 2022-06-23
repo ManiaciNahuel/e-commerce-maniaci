@@ -1,12 +1,9 @@
-
+/* Importations */
 import "./styles/Form.css"
 
-
 const Form = ({changeHandler, clientData, generateOrder, btnDisable}) => {
-
     return (
       <>
-
       <div className="form">
           <h2>FORM</h2>
           <h3>Complete all the fields with your information</h3>
@@ -39,7 +36,6 @@ const Form = ({changeHandler, clientData, generateOrder, btnDisable}) => {
               onChange={(e) => changeHandler(e)} 
               placeholder="johnsmith@gmail.com"
               required
-
             /> 
             <label htmlFor="email_2">Repeat your email</label>
             <input 
@@ -49,15 +45,11 @@ const Form = ({changeHandler, clientData, generateOrder, btnDisable}) => {
               onChange={(e) => changeHandler(e)} 
               placeholder="johnsmith@gmail.com"
               required
-
             /> 
-            
-            
           </form>
           <button onClick={generateOrder} disabled={btnDisable?true:false}>Send order</button>
       </div>
       </>
-    
   )
 }
 

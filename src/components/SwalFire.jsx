@@ -1,4 +1,4 @@
-
+/* Importations */
 import Swal from "sweetalert2"
 
 function swalFire(icon, tittle, text, time) {

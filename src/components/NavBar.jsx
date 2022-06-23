@@ -1,17 +1,15 @@
+/* Importations */
 import {getFirestore, collection, getDocs} from 'firebase/firestore'
 import React, { useEffect, useState } from 'react';
 import { NavLink, useParams} from 'react-router-dom';
 import { useCartContext } from '../context/cartContext';
 import CardWidget from './CardWidget';
-
-//import mi archivo css
 import './styles/NavBar.css';
-
 
 const NavBar = () => {
   const [categories, setCategories] = useState([])
   const { id } = useParams()
-
+  //Getting the navBar info through firebase 
   function getFs(category) {
     const db = getFirestore()
     const queryCollection = collection(db, category)
@@ -27,6 +25,7 @@ const NavBar = () => {
 
   const {totalProducts} = useCartContext() 
   return (
+    /* Header with tittle, categories and cart widget */
     <header className="header">
       <div className="logo-container">
       <NavLink to="/" >
@@ -50,7 +49,7 @@ const NavBar = () => {
       </nav>
       <div>
         <CardWidget/>
-        {totalProducts() !== 0 && totalProducts()}
+        {totalProducts() !== 0 && totalProducts()} {/* It's only shown if the total is > 0  */}
       </div>
     </header>
   );

@@ -1,14 +1,14 @@
+/* Importations */
 import React, { useState} from "react";
 import './styles/ItemCount.css'
 
+//Buttons to manage the amount of products that you can buy, it's limited by stock and it starts with at least one
 const ItemCount = ({ initial, stock, onAdd }) => {
-    
     const [qty, setQty] = useState(initial);
-
+    //Function to add the indicated amount 
     const addProduct = (num) => {
-        setQty(qty + num);
-    };
-
+        setQty(qty + num)
+    }
     return (
         <div className="count-container">
           <div className="count-container__contador">

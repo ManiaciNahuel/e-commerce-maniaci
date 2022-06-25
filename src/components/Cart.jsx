@@ -45,7 +45,7 @@ const Cart = () => {
           .finally(()=> {
             emptyCart() ; 
             setBtnDisable(false) ; 
-            setTimeout(() => {window.location.href = 'http://localhost:3000/';}, 3200)
+            setTimeout(() => {window.location.href = 'https://maniaci-nahuel-ecommerce.netlify.app/';}, 3200)
           })
       } else {
         swalFire('warning', `The emails do NOT match`, "", 2000)

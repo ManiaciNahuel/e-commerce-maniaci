@@ -48,7 +48,7 @@ const Cart = () => {
             setTimeout(() => {window.location.href = 'https://maniaci-nahuel-ecommerce.netlify.app/';}, 3200)
           })
       } else {
-        swalFire('warning', `The emails do NOT match, try again`, "", 1111000)
+        swalFire('warning', `The emails do NOT match, try again `, "", 1111000)
       }
     } else {
       swalFire( 'warning',  `Complete all the fields to continue`, "", 2000)

@@ -8,8 +8,9 @@ import swalFire from './SwalFire'
 
 
 const ItemDetail = ({producto}) => {
-  //The format var is used specially for the alert and the detail info, so that it's more friendly
-  var format = producto.category === "1" ? format = "Vinyl" : format = "CD" 
+  //The format var is used specially to make the alert more friendly
+  let format = ""
+  producto.category === "1" ? format = "Vinyl" : format = "CD" 
 
   const {addToCart} = useCartContext()
   const [countButton, setCountButton] = useState(false)

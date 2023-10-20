@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: "Radio Canada";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /*     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(93, 159, 240, 0.85) 50%, rgba(84, 154, 240, 0.79) 69%, rgba(8, 85, 240, 0.74) 86%, rgba(46, 46, 255, 0.7) 100%);
+ */
+    background-image: url("../public/media/fondo.png");
+    background-size: cover;
+    height: 100vh;
+    color: white;
+}
+
+button {
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2px;
+    border: 0.1px solid white;
+    margin: 5px;
+}

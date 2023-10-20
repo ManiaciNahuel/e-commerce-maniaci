@@ -1,0 +1,56 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-position: center;
+    background-color: rgb(235 235 235 / 52%);
+    box-shadow: 5px 5px rgb(0 0 0 / 65%);
+    BORDER: 2PX SOLID BLACK;
+    BORDER-RADIUS: 15PX;
+    MARGIN: 12PX 13px;
+}
+
+h1 {
+    color: black;
+    position: absolute;
+    top: 9px;
+    left: 92px;
+}
+
+.logo-container {
+    cursor: pointer;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-container {
+    display: flex;
+}
+
+.nav-container li {
+    margin: 0 10px;
+    list-style: none;
+}
+
+.nav-container li a {
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.nav-container li a:hover {
+    background-color: rgba(0, 0, 255, 0.259);
+}
+
+.cart {
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+}

@@ -1,0 +1,54 @@
+.Item {
+    padding: 8px;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 1rem;
+    position: relative;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.519);
+    border: 1px black solid;
+    border-radius: 15px;
+    width: 174px;
+    height: 200px;
+    color: black;
+    box-shadow: 15px 10px rgba(0, 0, 0, 0.645);
+}
+
+.item-link {
+    text-decoration: none;
+}
+
+.Item:hover {
+    background-color: rgba(0, 0, 255, 0.259);
+    font-weight: bolder;
+}
+
+.Item:hover .Item-name {
+    font-weight: bolder;
+}
+
+.Item-img {
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+}
+
+.Item-name {
+    font-weight: 100;
+    text-align: center;
+    align-self: center;
+}
+
+.Item p {
+    margin: 10px 0px;
+}
+
+.btn-detalle {
+    width: 70px;
+    border: 1px black solid;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.btn-detalle:hover {
+    background-color: white;
+}

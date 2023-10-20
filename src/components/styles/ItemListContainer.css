@@ -1,0 +1,12 @@
+.item-list-container-title {
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+}
+
+.jl {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    top: 60%;
+}

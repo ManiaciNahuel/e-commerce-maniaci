@@ -1,0 +1,36 @@
+.form {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin: 2rem;
+    background-color: rgba(255, 255, 255, 0.519);
+    border: 1px black solid;
+    border-radius: 15px;
+    max-width: 600px;
+}
+
+.form:nth-child(n) {
+    align-items: center;
+}
+
+.form button {
+    margin-bottom: 20px;
+}
+
+form {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px 10px;
+}
+
+form label {
+    text-align: end;
+}
+
+form input {
+    width: 220px;
+}
